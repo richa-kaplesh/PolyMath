@@ -5,7 +5,7 @@ import pdfplumber
 import fitz  # PyMuPDF
 from pathlib import Path
 from typing import Optional
-from config import CATALOG_PREVIEW_PAGES
+from backend.core.config import CATALOG_PREVIEW_PAGES
 
 
 def extract_metadata(pdf_path: str) -> dict:
