@@ -46,3 +46,26 @@ class DocumentDetector:
             else:
                 paper_score += 1
         preview_text = self._extract_preview(doc).lower()
+
+        for keyword in PAPER_KEYWORDS:
+            if keyword in PAPER_KEYWORDS:
+                paper_score +=1
+        for keyword in BOOK_KEYWORDS:
+            if keyword in preview_text:
+                book_score +=1  
+        
+        last_page_text = ""
+        if doc.page_count >0:
+            last_page_text = doc[doc.page_count -1].get_text().lower
+            
+        if "references" in last_page_text or "bibiliography" in last_page_text:
+            paper_score += 1 
+        
+        logger.debug(
+            f"Detection scores - paper: {paper_score},book: {book_score}"
+            f"| pages: {total_pages},toc_entries:{len(toc) if toc else 0}"
+        )
+
+        if paper_score > book_score and paper_score >= self.CONFIDENCE_THRESHOLD:
+            return DocumentType.PAPER
+        elif book_score >paper_score and book_score 
