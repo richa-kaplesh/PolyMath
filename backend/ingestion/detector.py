@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
 
-import fitz  # PyMuPDF
+import fitz  
 
 from core.config import (
     PAPER_MAX_PAGES,
